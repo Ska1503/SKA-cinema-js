@@ -57,6 +57,7 @@
     fill: var(--color-primary);
 }
 
+
 @media (max-width: 768px) {
     .navigation_active {
         width: 100%;
