@@ -76,7 +76,6 @@
     box-shadow: 0 0 3px 2px var(--color-primary);
 }
 
-
 @media (max-width: 768px) {
 
     .header__burger-btn {
