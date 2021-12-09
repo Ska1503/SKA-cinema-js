@@ -1,5 +1,5 @@
 .other-films {
-    padding: 660px 0 0 ;
+    padding: 30px 0 0 ;
 }
 
 .other-films__title {
@@ -175,7 +175,7 @@ gap: 30px 20px;
 
 @media (max-width: 768px) { 
     .other-films {
-        padding: 30px 0;
+        padding: 30px 0 0;
     }
     .other-films__title {
         max-width: none;

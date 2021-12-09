@@ -1,23 +1,12 @@
 import { getTriends } from './services.js'
+import renderCard from './renderCard.js'
 
-
-const slides = document.querySelectorAll('.slide');
-
-
-let currentSlide = 0;
-setInterval(nextSlide, 5000);
-
-function nextSlide() {
-  slides[currentSlide].className = 'slide';
-  currentSlide = (currentSlide + 1) % slides.length;
-  slides[currentSlide].className = 'slide showing';
-}
+const slides = document.querySelector('.slide');
 
 
 const firstRender = (data) => {
   
-  slides.forEach(slide => {
-    slide.innerHTML = `
+  slides.innerHTML = `
       <div class="container film-week__container" data-rating="${data.vote_average}">
         <div class="film-week__poster-wrapper">
           <img class="film-week__poster"
@@ -30,27 +19,33 @@ const firstRender = (data) => {
         aria-label="смотреть трейлер"></a>
       </div>
     `
-  })
 }
 
 
 const renderVideo = async () => {
   const data = await getTriends()
-  let resultsFilm = data.results
-  
-  function cycle(i) {
-    setInterval(() => {
-      i++
-      if (i == resultsFilm.length) {
-        i = 0
-      }
 
-      cycle(i)
-      firstRender(resultsFilm[i])
-      return cycle
-    }, 5000)  
-  }
-  cycle(0)  
+  const [resultsFilm, ...otherFilms] = data.results
+  otherFilms.length = 16
+
+  firstRender(resultsFilm)
+  renderCard(otherFilms)
+
+
+  // function cycle(i) {
+  //   setInterval(() => {
+  //     i++
+  //     if (i == 3) {
+  //       i = 0
+  //     }
+
+  //     cycle(i)
+      
+      
+  //   }, 5000)  
+  // }
+  // cycle(0)  
+  // Цикл прокрутки фильмов
 }
 
 
